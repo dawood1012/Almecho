@@ -1,0 +1,300 @@
+.services-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero */
+.services-hero {
+  padding: 10rem 0 5rem;
+  background: linear-gradient(180deg, #fff 0%, var(--bg-primary) 100%);
+}
+
+.services-hero h1 {
+  margin-bottom: 1.5rem;
+}
+
+/* Accordions */
+.services-accordion-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.service-accordion {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: var(--transition-spring);
+}
+
+.service-accordion:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.service-accordion.open {
+  border-color: var(--accent-red-glow);
+  box-shadow: var(--shadow-lg);
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem 2rem;
+  cursor: pointer;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: inherit;
+  color: var(--text-primary);
+  transition: var(--transition-smooth);
+}
+
+.accordion-header:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.accordion-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.accordion-icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 0.75rem;
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition-bounce);
+}
+
+.service-accordion.open .accordion-icon-wrap,
+.service-accordion:hover .accordion-icon-wrap {
+  background-color: var(--accent-red);
+  color: white;
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.phase-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-red);
+}
+
+.accordion-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.accordion-chevron {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.accordion-chevron.rotated {
+  transform: rotate(180deg);
+  color: var(--accent-red);
+}
+
+/* Accordion Body */
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+  padding: 0 2rem;
+}
+
+.accordion-body.expanded {
+  max-height: 600px;
+  padding: 0 2rem 2rem;
+}
+
+.accordion-headline {
+  color: var(--accent-red);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.accordion-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.problem-box, .fix-box, .result-box {
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  line-height: 1.6;
+}
+
+.box-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.15rem 0.6rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
+}
+
+.box-label.fix {
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+}
+
+.box-label.result {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+}
+
+.problem-box {
+  background-color: var(--bg-tertiary);
+}
+
+.problem-box p, .fix-box p, .result-box p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.fix-box {
+  background-color: var(--accent-red-light);
+}
+
+.result-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background-color: rgba(34, 197, 94, 0.05);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+.result-box svg {
+  color: #16a34a;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+/* Tactics */
+.tactics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.tactic-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 2.5rem 2rem 2rem;
+  border-radius: 1rem;
+  position: relative;
+  transition: var(--transition-spring);
+}
+
+.tactic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-red-glow);
+}
+
+.tactic-label {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: linear-gradient(135deg, var(--accent-red), #a50000);
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tactic-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Strategy Path */
+.strategy-path {
+  max-width: 700px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.path-step {
+  display: flex;
+  gap: 1.5rem;
+  text-align: left;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+.path-step:hover {
+  border-color: var(--accent-red-glow);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(5px);
+}
+
+.path-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent-red);
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.3;
+}
+
+.path-step:hover .path-number {
+  opacity: 1;
+}
+
+.path-step h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .accordion-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accordion-header {
+    padding: 1.25rem;
+  }
+
+  .accordion-header h3 {
+    font-size: 1rem;
+  }
+
+  .path-step {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
