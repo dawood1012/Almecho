@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BarChart3, Target, ShieldAlert, Cpu, Zap, TrendingUp, ChevronDown } from 'lucide-react';
-import { useScrollReveal, useCountUp, useMagneticButton, useParallax } from '../hooks/useAnimations';
+import { useScrollReveal, useCountUp, useMagneticButton, useParallax, useTextReveal } from '../hooks/useAnimations';
+import FlipCard from '../components/FlipCard';
 import './Home.css';
 
 /* Reusable scroll-reveal wrapper */
@@ -26,6 +27,18 @@ const StatCounter = ({ target, suffix, label }) => {
   );
 };
 
+const AnimatedHeadline = ({ children, className = '' }) => {
+  const [ref, vis] = useScrollReveal();
+  const textRef = useTextReveal(vis);
+  return <h1 ref={ref} className={className}><span ref={textRef}>{children}</span></h1>;
+};
+
+const SectionTitle = ({ children, className = '' }) => {
+  const [ref, vis] = useScrollReveal();
+  const textRef = useTextReveal(vis);
+  return <h2 ref={ref} className={`section-title ${className}`}><span ref={textRef}>{children}</span></h2>;
+};
+
 const Home = () => {
   const magneticRef = useMagneticButton();
   const parallaxRef = useParallax(0.4);
@@ -41,21 +54,31 @@ const Home = () => {
           <div className="shape shape-3"></div>
         </div>
         <div className="container hero-inner text-center">
-          <span className="pre-headline hero-preheadline">
-            WARNING: If you are looking for an overnight "magic pill" or Feel-Good Metrics, close this page.
-          </span>
-          <h1 className="hero-title">
+          <Reveal>
+            <span className="pre-headline hero-preheadline">
+              WARNING: If you are looking for an overnight "magic pill" or Feel-Good Metrics, close this page.
+            </span>
+          </Reveal>
+          <AnimatedHeadline className="hero-title">
             Why Your Competitors Are Stealing Your Market Share
-            <span className="title-accent"> (And The 'Trust Bypass' System That Reclaims It).</span>
-          </h1>
-          <p className="hero-subtitle">
-            Every day you tolerate your agency's bloated retainers and theory, your competitors steal your buyers. Stop the bleeding. By deploying a hybrid growth architecture, your brand can harness raw, lo-fi attention to dominate US and EU markets.
-          </p>
-          <div className="hero-actions">
-            <Link to="/contact" className="btn-primary" ref={magneticRef}>
-              Audit My Growth System <ArrowRight size={20} />
-            </Link>
-          </div>
+          </AnimatedHeadline>
+          <Reveal delay={0.5}>
+            <h1 className="hero-title-sub mt-2">
+              <span className="title-accent">(And The 'Trust Bypass' System That Reclaims It).</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="hero-subtitle">
+              Every day you tolerate your agency's bloated retainers and theory, your competitors steal your buyers. Stop the bleeding. By deploying a hybrid growth architecture, your brand can harness raw, lo-fi attention to dominate US and EU markets.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <div className="hero-actions">
+              <Link to="/contact" className="btn-primary" ref={magneticRef}>
+                Audit My Growth System <ArrowRight size={20} />
+              </Link>
+            </div>
+          </Reveal>
           <div className="scroll-indicator">
             <ChevronDown size={24} />
           </div>
@@ -85,34 +108,34 @@ const Home = () => {
       {/* Offers */}
       <section className="section bg-secondary-section">
         <div className="container">
-          <Reveal>
-            <h2 className="section-title text-center">Two Ways to Start</h2>
+          <SectionTitle className="text-center">Two Ways to Start</SectionTitle>
+          <Reveal delay={0.2}>
             <p className="section-subtitle text-center">Choose your entry point into the Master 9 Protocol.</p>
           </Reveal>
           <div className="offers-grid">
             <Reveal delay={0.1}>
-              <div className="card offer-card">
-                <div className="offer-icon-wrap">
-                  <BarChart3 size={32} />
-                </div>
-                <h3>The B2B Growth Audit</h3>
-                <p className="text-secondary">
-                  "We'll find the specific bottleneck costing you 30% of your revenue. No fluff, just the math."
-                </p>
-                <Link to="/contact" className="btn-secondary mt-4">Get My Free Audit <ArrowRight size={16} /></Link>
-              </div>
+              <FlipCard
+                icon={BarChart3}
+                title="The B2B Growth Audit"
+                details={
+                  <div className="card-details-content">
+                    <p>"We'll find the specific bottleneck costing you 30% of your revenue. No fluff, just the math."</p>
+                    <Link to="/contact" className="btn-mini mt-6">Get My Free Audit <ArrowRight size={14} /></Link>
+                  </div>
+                }
+              />
             </Reveal>
             <Reveal delay={0.25}>
-              <div className="card offer-card">
-                <div className="offer-icon-wrap">
-                  <ShieldAlert size={32} />
-                </div>
-                <h3>The 'Master 9' Blueprint</h3>
-                <p className="text-secondary">
-                  "The internal protocol we use to scale brands in the US/EU markets. Available for early access."
-                </p>
-                <Link to="/blog" className="btn-secondary mt-4">Download the Blueprint <ArrowRight size={16} /></Link>
-              </div>
+              <FlipCard
+                icon={ShieldAlert}
+                title="The 'Master 9' Blueprint"
+                details={
+                  <div className="card-details-content">
+                    <p>"The internal protocol we use to scale brands in the US/EU markets. Available for early access."</p>
+                    <Link to="/blog" className="btn-mini mt-6">Download Blueprint <ArrowRight size={14} /></Link>
+                  </div>
+                }
+              />
             </Reveal>
           </div>
         </div>
@@ -121,30 +144,23 @@ const Home = () => {
       {/* Services */}
       <section className="section">
         <div className="container">
-          <Reveal>
-            <h2 className="section-title text-center">Services</h2>
+          <SectionTitle className="text-center">Services</SectionTitle>
+          <Reveal delay={0.2}>
             <p className="section-subtitle text-center">The four pillars of the Almecho growth engine.</p>
           </Reveal>
-          <div className="services-grid">
+          <div className="services-grid-home">
             {[
-              { icon: <Cpu size={28} />, title: '1. Growth Architecture', secret: 'Why a bloated tech stack is currently murdering your conversion rate.', transform: 'High-performance APP/CRO engines that turn scroll-depth into business assets.' },
-              { icon: <Target size={28} />, title: '2. Direct-Response Copywriting', secret: 'Why "polished" grammar is making you look like a bot and destroying your sales.', transform: "The 'Lo-Fi Trust Bypass'—copy that speaks the platform's native tongue to crush sales resistance instantly." },
-              { icon: <Zap size={28} />, title: '3. Social Media & Performance Ads', secret: 'The single "Negative Pattern" interrupt that forces a prospect to stop scrolling.', transform: 'Strategic volume and "Pain-Mining" content that trades attention where it\'s cheapest and converts where it\'s hardest.' },
-              { icon: <TrendingUp size={28} />, title: '4. Market Intelligence', secret: "The \"Private Signal\" tactic that reveals exactly what your competitor's customers are frustrated with.", transform: 'Social engineering and roadmap alignment that removes the guesswork before a single dollar is spent on ads.' },
+              { icon: Cpu, title: '1. Growth Architecture', details: 'High-performance APP/CRO engines that turn scroll-depth into business assets. We fix the bloated tech murdering your conversion.' },
+              { icon: Target, title: '2. Direct-Response Copywriting', details: "The 'Lo-Fi Trust Bypass'—copy that speaks the platform's native tongue to crush sales resistance instantly." },
+              { icon: Zap, title: '3. Social Media & Performance Ads', details: 'Strategic volume and "Pain-Mining" content that trades attention where it\'s cheapest and converts where it\'s hardest.' },
+              { icon: TrendingUp, title: '4. Market Intelligence', details: 'Social engineering and roadmap alignment that removes the guesswork before a single dollar is spent on ads.' },
             ].map((s, i) => (
               <Reveal key={i} delay={i * 0.12}>
-                <div className="service-item">
-                  <div className="service-icon-wrap">{s.icon}</div>
-                  <h4>{s.title}</h4>
-                  <div className="service-secret">
-                    <span className="label-badge">The Secret</span>
-                    <p>{s.secret}</p>
-                  </div>
-                  <div className="service-transform">
-                    <span className="label-badge green">The Transformation</span>
-                    <p>{s.transform}</p>
-                  </div>
-                </div>
+                <FlipCard
+                  icon={s.icon}
+                  title={s.title}
+                  details={<p>{s.details}</p>}
+                />
               </Reveal>
             ))}
           </div>

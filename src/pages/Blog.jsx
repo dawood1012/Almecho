@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Download, MessageSquare, ChevronRight, ArrowRight, Clock, TrendingUp } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useAnimations';
+import { Download, MessageSquare, ArrowRight, Clock, TrendingUp } from 'lucide-react';
+import { useScrollReveal, useTextReveal } from '../hooks/useAnimations';
+import FlipCard from '../components/FlipCard';
 import './Blog.css';
 
 const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
@@ -13,6 +14,12 @@ const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
   );
 };
 
+const AnimatedHeadline = ({ children, className = '' }) => {
+  const [ref, vis] = useScrollReveal();
+  const textRef = useTextReveal(vis);
+  return <h1 ref={ref} className={className}><span ref={textRef}>{children}</span></h1>;
+};
+
 const blogPosts = [
   {
     phase: 'Phase 2',
@@ -20,7 +27,7 @@ const blogPosts = [
     category: 'Attention Arbitrage',
     title: 'Decoding the "High ROAS" Illusion',
     excerpt: 'Why your ad agency is celebrating while your market share stays entirely flat. A deep dive into attention arbitrage and breaking the bottom-of-funnel trap.',
-    icon: <TrendingUp size={20} />,
+    icon: TrendingUp,
   },
   {
     phase: 'Phase 4',
@@ -28,7 +35,7 @@ const blogPosts = [
     category: 'Lo-Fi Trust Bypass',
     title: "The 'Lo-Fi Trust Bypass' in Action: A B2B SaaS Case Study",
     excerpt: 'We rebuilt a B2B SaaS outreach sequence using zero HTML formatting, all-lowercase subjects, and raw text. The result? A 400% increase in booked demos.',
-    icon: <MessageSquare size={20} />,
+    icon: MessageSquare,
   },
   {
     phase: 'Phase 7',
@@ -36,14 +43,13 @@ const blogPosts = [
     category: 'Pain Mining',
     title: 'How We Used "Pain Mining" to Steal 3 Enterprise Accounts',
     excerpt: 'The exact intelligence protocol we deployed to identify unspoken frustrations in a competitor\'s customer base—and how we repositioned our client\'s offer to exploit them.',
-    icon: <TrendingUp size={20} />,
+    icon: TrendingUp,
   },
 ];
 
 const Blog = () => {
   const [comment, setComment] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [activePost, setActivePost] = useState(null);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -63,7 +69,8 @@ const Blog = () => {
             <span className="pre-headline">The Vault</span>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1>Field Reports &<br /><span className="title-accent">Systemic Insights.</span></h1>
+            <AnimatedHeadline>Field Reports &</AnimatedHeadline>
+            <h1 className="mt-2"><span className="title-accent">Systemic Insights.</span></h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="section-subtitle" style={{ maxWidth: '700px' }}>
@@ -79,29 +86,22 @@ const Blog = () => {
           <div className="blog-posts">
             {blogPosts.map((post, i) => (
               <Reveal key={i} delay={i * 0.12}>
-                <article
-                  className={`post-card ${activePost === i ? 'active' : ''}`}
-                  onMouseEnter={() => setActivePost(i)}
-                  onMouseLeave={() => setActivePost(null)}
-                >
-                  <div className="post-card-inner">
-                    <div className="post-meta">
-                      <span className="post-phase">{post.phase}</span>
-                      <span className="post-dot">•</span>
-                      <Clock size={14} />
-                      <span>{post.readTime}</span>
-                      <span className="post-dot">•</span>
-                      <span className="post-category">{post.category}</span>
+                <FlipCard
+                  icon={post.icon}
+                  title={post.title}
+                  details={
+                    <div className="blog-details">
+                      <div className="blog-meta-mini mb-4">
+                        <span className="phase-pill">{post.phase}</span>
+                        <span className="time-pill"><Clock size={12} /> {post.readTime}</span>
+                      </div>
+                      <p className="blog-excerpt">{post.excerpt}</p>
+                      <button className="read-more-link mt-4">
+                        Explore Full Report <ArrowRight size={14} />
+                      </button>
                     </div>
-                    <h2>{post.title}</h2>
-                    <p className="text-secondary">{post.excerpt}</p>
-                    <button className="read-more-btn">
-                      Read Full Report
-                      <span className="btn-arrow"><ArrowRight size={16} /></span>
-                    </button>
-                  </div>
-                  <div className="post-card-accent"></div>
-                </article>
+                  }
+                />
               </Reveal>
             ))}
           </div>

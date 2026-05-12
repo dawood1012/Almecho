@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Target, Zap, TrendingUp, CheckCircle, ChevronDown } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useAnimations';
+import { ArrowRight, Code, Target, Zap, TrendingUp, CheckCircle } from 'lucide-react';
+import { useScrollReveal, useTextReveal } from '../hooks/useAnimations';
+import FlipCard from '../components/FlipCard';
 import './Services.css';
 
 const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
@@ -14,48 +15,10 @@ const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
   );
 };
 
-const ServiceAccordion = ({ icon, title, phaseLabel, headline, problem, fix, result, index }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <Reveal delay={index * 0.12}>
-      <div className={`service-accordion ${open ? 'open' : ''}`}>
-        <button className="accordion-header" onClick={() => setOpen(!open)}>
-          <div className="accordion-left">
-            <div className="accordion-icon-wrap">{icon}</div>
-            <div>
-              <span className="phase-label">{phaseLabel}</span>
-              <h3>{title}</h3>
-            </div>
-          </div>
-          <div className={`accordion-chevron ${open ? 'rotated' : ''}`}>
-            <ChevronDown size={24} />
-          </div>
-        </button>
-
-        <div className={`accordion-body ${open ? 'expanded' : ''}`}>
-          <h4 className="accordion-headline">{headline}</h4>
-          <div className="accordion-content-grid">
-            <div className="problem-box">
-              <span className="box-label">The Problem</span>
-              <p>{problem}</p>
-            </div>
-            <div className="fix-box">
-              <span className="box-label fix">The Almeco Fix</span>
-              <p>{fix}</p>
-            </div>
-          </div>
-          <div className="result-box">
-            <CheckCircle size={20} />
-            <div>
-              <span className="box-label result">The Result</span>
-              <p>{result}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Reveal>
-  );
+const AnimatedHeadline = ({ children, className = '' }) => {
+  const [ref, vis] = useScrollReveal();
+  const textRef = useTextReveal(vis);
+  return <h1 ref={ref} className={className}><span ref={textRef}>{children}</span></h1>;
 };
 
 const Services = () => {
@@ -68,7 +31,8 @@ const Services = () => {
             <span className="pre-headline">The Master 9 Protocol</span>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1>Most agencies give you "Deliverables."<br /><span className="title-accent">We give you "Assets."</span></h1>
+            <AnimatedHeadline>Most agencies give you "Deliverables."</AnimatedHeadline>
+            <h1 className="mt-2"><span className="title-accent">We give you "Assets."</span></h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="section-subtitle" style={{ maxWidth: '650px' }}>
@@ -78,49 +42,69 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services Accordions */}
+      {/* Services Cards */}
       <section className="section">
-        <div className="container services-accordion-container">
-          <ServiceAccordion
-            index={0}
-            icon={<Target size={28} />}
-            title="Tactical Copywriting & OBP Reconstruction"
-            phaseLabel="Service 01"
-            headline='Why Your "High-Quality" Copy is Actually Repelling High-Ticket Clients.'
-            problem='Most copy tries too hard to be "clever" or "professional," creating a barrier between you and the prospect&apos;s trust.'
-            fix={`We deploy the 'Lo-Fi Trust Bypass'. By using mobile-first social engineering and internal-mimicking subject lines, we bypass the "sales radar" and strike the deep-seated pain points of your target market.`}
-            result="Proposals that get opened, read, and responded to—not just archived."
-          />
-          <ServiceAccordion
-            index={1}
-            icon={<Code size={28} />}
-            title="Full-Stack Growth Dev (CodexSouls Synergy)"
-            phaseLabel="Service 02"
-            headline='Introducing the "APP/CRO Engine"—The Tech Stack Designed to Convert, Not Just Exist.'
-            problem='Your website is likely a "leaking bucket" of technical debt and friction points that scare off cold traffic.'
-            fix='We don&apos;t just "build websites." We engineer conversion environments using JS (ES6+), React.js, and Supabase to create high-velocity, frictionless user journeys.'
-            result="A digital asset that works 24/7 as your top-performing salesperson."
-          />
-          <ServiceAccordion
-            index={2}
-            icon={<Zap size={28} />}
-            title="B2B Intelligence & Sales Engineering"
-            phaseLabel="Service 03"
-            headline="The Single 'Intelligence Mining' Protocol That Predicts Your Competitor's Next Move."
-            problem='Most marketing is reactive. You&apos;re fighting for the same scraps as everyone else using the same generic ads.'
-            fix='Using Category 7 (Intelligence/Pain Mining) and Category 8 (Social Engineering), we extract private signals from your market. We find the "unspoken frustrations" and build your offer around them.'
-            result="A market position so sharp it makes competition irrelevant."
-          />
-          <ServiceAccordion
-            index={3}
-            icon={<TrendingUp size={28} />}
-            title="Inorganic Growth & Attention Arbitrage"
-            phaseLabel="Service 04"
-            headline='Why Your "High ROAS" is Actually a Signal of Stagnation.'
-            problem='Most agencies play it safe with "bottom-of-funnel" retargeting, showing ads to people who already know you. They claim victory on vanity metrics while your actual market share stays flat.'
-            fix='We deploy Aggressive Paid Ads across Meta, Google, and TikTok. We trade in attention arbitrage—finding where your ideal prospect&apos;s attention is undervalued and striking with "Lo-Fi" Creative that feels native to the feed.'
-            result="Scalable, predictable volume that penetrates new markets in the US and Europe, turning cold strangers into high-intent leads."
-          />
+        <div className="container services-grid">
+          <Reveal delay={0.1}>
+            <FlipCard
+              icon={Target}
+              title="Tactical Copywriting & OBP Reconstruction"
+              details={
+                <div className="card-details-content">
+                  <p><strong>The Problem:</strong> Most copy tries too hard to be "clever," creating a trust barrier.</p>
+                  <p className="mt-4"><strong>The Almeco Fix:</strong> We deploy the 'Lo-Fi Trust Bypass'—social engineering that strikes deep pain points.</p>
+                  <div className="result-pill mt-4">
+                    <CheckCircle size={14} /> Result: Proposals that get opened and read.
+                  </div>
+                </div>
+              }
+            />
+          </Reveal>
+          <Reveal delay={0.2}>
+            <FlipCard
+              icon={Code}
+              title="Full-Stack Growth Dev (CodexSouls Synergy)"
+              details={
+                <div className="card-details-content">
+                  <p><strong>The Problem:</strong> Your website is likely a "leaking bucket" of technical debt.</p>
+                  <p className="mt-4"><strong>The Almeco Fix:</strong> Engineering conversion environments using React.js & Supabase for frictionless journeys.</p>
+                  <div className="result-pill mt-4">
+                    <CheckCircle size={14} /> Result: A 24/7 digital salesperson.
+                  </div>
+                </div>
+              }
+            />
+          </Reveal>
+          <Reveal delay={0.3}>
+            <FlipCard
+              icon={Zap}
+              title="B2B Intelligence & Sales Engineering"
+              details={
+                <div className="card-details-content">
+                  <p><strong>The Problem:</strong> Most marketing is reactive. You're fighting for scraps using generic ads.</p>
+                  <p className="mt-4"><strong>The Almeco Fix:</strong> Category 7 & 8 protocols to extract private signals and build offers around unspoken frustrations.</p>
+                  <div className="result-pill mt-4">
+                    <CheckCircle size={14} /> Result: Irrelevant competition.
+                  </div>
+                </div>
+              }
+            />
+          </Reveal>
+          <Reveal delay={0.4}>
+            <FlipCard
+              icon={TrendingUp}
+              title="Inorganic Growth & Attention Arbitrage"
+              details={
+                <div className="card-details-content">
+                  <p><strong>The Problem:</strong> Agencies play it safe with bottom-funnel retargeting, claiming vanity wins.</p>
+                  <p className="mt-4"><strong>The Almeco Fix:</strong> Aggressive Paid Ads across Meta/TikTok using 'Lo-Fi' Creative that feels native.</p>
+                  <div className="result-pill mt-4">
+                    <CheckCircle size={14} /> Result: Scalable market penetration.
+                  </div>
+                </div>
+              }
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -133,15 +117,15 @@ const Services = () => {
           </Reveal>
           <div className="tactics-grid">
             {[
-              { label: 'How to', text: 'Leverage the "Schwa" of sales—the subtle downbeats in your communication that command a room\'s rhythm.' },
-              { label: 'What NEVER', text: 'To include in your Upwork or LinkedIn bio if you want to avoid being labeled as "just another freelancer."' },
-              { label: 'The Secret to', text: '"Just-in-Time Knowledge"—how we adapt your strategy in real-time to match 2026\'s shifting attention patterns.' },
+              { title: 'Leveraging "Schwa"', text: 'How to use subtle downbeats in your communication to command a room\'s rhythm.' },
+              { title: 'Bio Trust Killers', text: 'What NEVER to include in your LinkedIn bio if you want to avoid being labeled as a "freelancer."' },
+              { title: 'Just-in-Time Knowledge', text: 'How we adapt strategy in real-time to match 2026\'s shifting attention patterns.' },
             ].map((t, i) => (
               <Reveal key={i} direction="scale" delay={i * 0.15}>
-                <div className="tactic-card">
-                  <div className="tactic-label">{t.label}</div>
-                  <p>{t.text}</p>
-                </div>
+                <FlipCard 
+                  title={t.title}
+                  details={<p>{t.text}</p>}
+                />
               </Reveal>
             ))}
           </div>

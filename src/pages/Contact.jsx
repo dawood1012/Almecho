@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, ArrowRight, CheckCircle2, Send } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useAnimations';
+import { useScrollReveal, useTextReveal, useMagneticButton } from '../hooks/useAnimations';
 import './Contact.css';
 
 const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
@@ -13,11 +13,18 @@ const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
   );
 };
 
+const AnimatedHeadline = ({ children, className = '' }) => {
+  const [ref, vis] = useScrollReveal();
+  const textRef = useTextReveal(vis);
+  return <h1 ref={ref} className={className}><span ref={textRef}>{children}</span></h1>;
+};
+
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', bottleneck: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
+  const magneticRef = useMagneticButton();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -100,7 +107,8 @@ const Contact = () => {
             <span className="pre-headline">The Bridge</span>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1>Ready to Stop<br /><span className="title-accent">the Leak?</span></h1>
+            <AnimatedHeadline>Ready to Stop</AnimatedHeadline>
+            <h1 className="mt-2"><span className="title-accent">the Leak?</span></h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="section-subtitle" style={{ maxWidth: '650px' }}>
@@ -166,7 +174,7 @@ const Contact = () => {
                 <div className="input-border-effect"></div>
               </div>
 
-              <button type="submit" className={`btn-primary submit-btn mt-4 ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting}>
+              <button type="submit" className={`btn-primary submit-btn mt-4 ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting} ref={magneticRef}>
                 {isSubmitting ? (
                   <span className="spinner-wrap">
                     <span className="spinner"></span> Initializing...

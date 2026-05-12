@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useMagneticButton } from '../hooks/useAnimations';
 import './NavBar.css';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const logoRef = useMagneticButton();
+  const hamburgerRef = useMagneticButton();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -27,7 +30,7 @@ const NavBar = () => {
     <>
       <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container navbar-container">
-          <Link to="/" className="logo">
+          <Link to="/" className="logo" ref={logoRef}>
             <span className="logo-text">Almecho</span>
             <span className="logo-dot"></span>
           </Link>
@@ -36,6 +39,7 @@ const NavBar = () => {
             className={`hamburger ${isOpen ? 'active' : ''}`} 
             onClick={toggleMenu} 
             aria-label="Toggle Menu"
+            ref={hamburgerRef}
           >
             <span className="line line-1"></span>
             <span className="line line-2"></span>
