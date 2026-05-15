@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Target, Zap, TrendingUp, CheckCircle } from 'lucide-react';
-import { useScrollReveal, useTextReveal } from '../hooks/useAnimations';
+import { useScrollReveal, useTextReveal, useMagneticButton } from '../hooks/useAnimations';
 import FlipCard from '../components/FlipCard';
+import ScrambleText from '../components/ScrambleText';
 import './Services.css';
 
 const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
@@ -22,13 +23,17 @@ const AnimatedHeadline = ({ children, className = '' }) => {
 };
 
 const Services = () => {
+  const magneticRef = useMagneticButton();
+
   return (
     <div className="services-page">
       {/* Hero */}
       <section className="section services-hero text-center">
         <div className="container">
           <Reveal>
-            <span className="pre-headline">The Master 9 Protocol</span>
+            <span className="pre-headline">
+              <ScrambleText text="The Master 9 Protocol" />
+            </span>
           </Reveal>
           <Reveal delay={0.1}>
             <AnimatedHeadline>Most agencies give you "Deliverables."</AnimatedHeadline>
@@ -165,7 +170,7 @@ const Services = () => {
           </Reveal>
           <Reveal direction="scale" delay={0.3}>
             <div className="cta-container mt-6">
-              <Link to="/contact" className="btn-primary">
+              <Link to="/contact" className="btn-primary" ref={magneticRef}>
                 Initialize My Audit <ArrowRight size={20} />
               </Link>
               <p className="kidney-joke mt-4">

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Download, MessageSquare, ArrowRight, Clock, TrendingUp } from 'lucide-react';
-import { useScrollReveal, useTextReveal } from '../hooks/useAnimations';
+import { useScrollReveal, useTextReveal, useMagneticButton } from '../hooks/useAnimations';
 import FlipCard from '../components/FlipCard';
+import ScrambleText from '../components/ScrambleText';
 import './Blog.css';
 
 const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
@@ -21,6 +22,7 @@ const AnimatedHeadline = ({ children, className = '' }) => {
 };
 
 const blogPosts = [
+// ... existing posts ...
   {
     phase: 'Phase 2',
     readTime: '5 min',
@@ -50,6 +52,7 @@ const blogPosts = [
 const Blog = () => {
   const [comment, setComment] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const magneticRef = useMagneticButton();
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -66,7 +69,9 @@ const Blog = () => {
       <section className="section blog-hero text-center">
         <div className="container">
           <Reveal>
-            <span className="pre-headline">The Vault</span>
+            <span className="pre-headline">
+              <ScrambleText text="The Vault" />
+            </span>
           </Reveal>
           <Reveal delay={0.1}>
             <AnimatedHeadline>Field Reports &</AnimatedHeadline>
@@ -147,7 +152,7 @@ const Blog = () => {
               <p className="text-secondary mb-4">
                 "Don't have time to read 50 articles?" Get the condensed version of every strategy in this vault.
               </p>
-              <button className="btn-primary w-100">
+              <button className="btn-primary w-100" ref={magneticRef}>
                 <Download size={18} /> Access the Cheat Sheet
               </button>
               <p className="kidney-joke mt-4 text-center" style={{ fontSize: '0.8rem' }}>

@@ -35,16 +35,17 @@ const NavBar = () => {
             <span className="logo-dot"></span>
           </Link>
 
-          <button 
-            className={`hamburger ${isOpen ? 'active' : ''}`} 
-            onClick={toggleMenu} 
-            aria-label="Toggle Menu"
-            ref={hamburgerRef}
-          >
-            <span className="line line-1"></span>
-            <span className="line line-2"></span>
-            <span className="line line-3"></span>
-          </button>
+          <div className="hamburger-wrapper" ref={hamburgerRef}>
+            <button 
+              className={`hamburger ${isOpen ? 'active' : ''}`} 
+              onClick={toggleMenu} 
+              aria-label="Toggle Menu"
+            >
+              <span className="line line-1"></span>
+              <span className="line line-2"></span>
+              <span className="line line-3"></span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -52,28 +53,25 @@ const NavBar = () => {
       <div className={`menu-overlay ${isOpen ? 'open' : ''}`}>
         <nav className="menu-nav">
           <div className="menu-links">
-            <Link to="/" className={`menu-link ${location.pathname === '/' ? 'active' : ''}`} style={{ animationDelay: '0.1s' }}>
-              <span className="menu-link-number">01</span>
-              <span className="menu-link-text">Home</span>
-              <span className="menu-link-line"></span>
-            </Link>
-            <Link to="/services" className={`menu-link ${location.pathname === '/services' ? 'active' : ''}`} style={{ animationDelay: '0.2s' }}>
-              <span className="menu-link-number">02</span>
-              <span className="menu-link-text">Services</span>
-              <span className="menu-link-line"></span>
-            </Link>
-            <Link to="/blog" className={`menu-link ${location.pathname === '/blog' ? 'active' : ''}`} style={{ animationDelay: '0.3s' }}>
-              <span className="menu-link-number">03</span>
-              <span className="menu-link-text">Blog</span>
-              <span className="menu-link-line"></span>
-            </Link>
-            <Link to="/contact" className={`menu-link ${location.pathname === '/contact' ? 'active' : ''}`} style={{ animationDelay: '0.4s' }}>
-              <span className="menu-link-number">04</span>
-              <span className="menu-link-text">Contact</span>
-              <span className="menu-link-line"></span>
-            </Link>
+            {[
+              { path: '/', label: 'Home', num: '01' },
+              { path: '/services', label: 'Services', num: '02' },
+              { path: '/blog', label: 'Blog', num: '03' },
+              { path: '/contact', label: 'Contact', num: '04' }
+            ].map((link, i) => (
+              <Link 
+                key={link.path}
+                to={link.path} 
+                className={`menu-link ${location.pathname === link.path ? 'active' : ''}`} 
+                style={{ transitionDelay: `${0.2 + i * 0.1}s` }}
+              >
+                <span className="menu-link-number">{link.num}</span>
+                <span className="menu-link-text">{link.label}</span>
+                <span className="menu-link-line"></span>
+              </Link>
+            ))}
           </div>
-          <div className="menu-footer" style={{ animationDelay: '0.5s' }}>
+          <div className="menu-footer">
             <p>A Triad Ecosystem, not an agency.</p>
           </div>
         </nav>

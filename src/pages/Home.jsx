@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BarChart3, Target, ShieldAlert, Cpu, Zap, TrendingUp, ChevronDown } from 'lucide-react';
-import { useScrollReveal, useCountUp, useMagneticButton, useParallax, useTextReveal } from '../hooks/useAnimations';
+import { useScrollReveal, useCountUp, useMagneticButton, useParallax, useTextReveal, useTextScramble, useTilt } from '../hooks/useAnimations';
 import FlipCard from '../components/FlipCard';
+import ScrambleText from '../components/ScrambleText';
 import './Home.css';
 
 /* Reusable scroll-reveal wrapper */
@@ -42,6 +43,8 @@ const SectionTitle = ({ children, className = '' }) => {
 const Home = () => {
   const magneticRef = useMagneticButton();
   const parallaxRef = useParallax(0.4);
+  const tiltRef1 = useTilt({ max: 20, perspective: 1000 });
+  const tiltRef2 = useTilt({ max: 15, perspective: 1000 });
 
   return (
     <div className="home-page">
@@ -49,14 +52,14 @@ const Home = () => {
       {/* Hero */}
       <section className="section hero-section">
         <div className="hero-bg-shapes">
-          <div className="shape shape-1" ref={parallaxRef}></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
+          <div className="shape shape-1" ref={tiltRef1}></div>
+          <div className="shape shape-2" ref={tiltRef2}></div>
+          <div className="shape shape-3" ref={parallaxRef}></div>
         </div>
         <div className="container hero-inner text-center">
           <Reveal>
             <span className="pre-headline hero-preheadline">
-              WARNING: If you are looking for an overnight "magic pill" or Feel-Good Metrics, close this page.
+              <ScrambleText text="WARNING: If you are looking for an overnight 'magic pill' or Feel-Good Metrics, close this page." />
             </span>
           </Reveal>
           <AnimatedHeadline className="hero-title">

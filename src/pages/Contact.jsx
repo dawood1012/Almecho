@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, ArrowRight, CheckCircle2, Send } from 'lucide-react';
 import { useScrollReveal, useTextReveal, useMagneticButton } from '../hooks/useAnimations';
+import ScrambleText from '../components/ScrambleText';
 import './Contact.css';
 
 const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
@@ -40,6 +41,7 @@ const Contact = () => {
   };
 
   if (isSuccess) {
+    // ... success view ...
     return (
       <div className="contact-page success-view">
         <div className="container">
@@ -104,7 +106,9 @@ const Contact = () => {
       <section className="section contact-hero text-center">
         <div className="container">
           <Reveal>
-            <span className="pre-headline">The Bridge</span>
+            <span className="pre-headline">
+              <ScrambleText text="The Bridge" />
+            </span>
           </Reveal>
           <Reveal delay={0.1}>
             <AnimatedHeadline>Ready to Stop</AnimatedHeadline>

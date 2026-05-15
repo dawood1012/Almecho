@@ -163,3 +163,54 @@ export function useTextReveal(isVisible) {
 
   return ref;
 }
+
+export function useMousePosition() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return mousePosition;
+}
+
+export function useTextScramble(text, duration = 1000, isHovered = false) {
+  const [scrambledText, setScrambledText] = useState(text);
+  const chars = '!<>-_\\/[]{}—=+*^?#________';
+  const frameRef = useRef(null);
+
+  useEffect(() => {
+    if (!isHovered) {
+      setScrambledText(text);
+      return;
+    }
+
+    let frame = 0;
+    const totalFrames = duration / 16;
+    
+    const animate = () => {
+      const progress = frame / totalFrames;
+      const result = text.split('').map((char, i) => {
+        if (i / text.length < progress) return char;
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join('');
+
+      setScrambledText(result);
+
+      if (frame < totalFrames) {
+        frame++;
+        frameRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    frameRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameRef.current);
+  }, [isHovered, text, duration]);
+
+  return scrambledText;
+}
