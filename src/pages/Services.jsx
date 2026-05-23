@@ -32,7 +32,7 @@ const Services = () => {
         <div className="container">
           <Reveal>
             <span className="pre-headline">
-              <ScrambleText text="The Master 9 Protocol" />
+              <ScrambleText text="The Almecho Protocol" />
             </span>
           </Reveal>
           <Reveal delay={0.1}>
@@ -52,36 +52,6 @@ const Services = () => {
         <div className="container services-grid">
           <Reveal delay={0.1}>
             <FlipCard
-              icon={Target}
-              title="Tactical Copywriting & OBP Reconstruction"
-              details={
-                <div className="card-details-content">
-                  <p><strong>The Problem:</strong> Most copy tries too hard to be "clever," creating a trust barrier.</p>
-                  <p className="mt-4"><strong>The Almeco Fix:</strong> We deploy the 'Lo-Fi Trust Bypass'—social engineering that strikes deep pain points.</p>
-                  <div className="result-pill mt-4">
-                    <CheckCircle size={14} /> Result: Proposals that get opened and read.
-                  </div>
-                </div>
-              }
-            />
-          </Reveal>
-          <Reveal delay={0.2}>
-            <FlipCard
-              icon={Code}
-              title="Full-Stack Growth Dev (CodexSouls Synergy)"
-              details={
-                <div className="card-details-content">
-                  <p><strong>The Problem:</strong> Your website is likely a "leaking bucket" of technical debt.</p>
-                  <p className="mt-4"><strong>The Almeco Fix:</strong> Engineering conversion environments using React.js & Supabase for frictionless journeys.</p>
-                  <div className="result-pill mt-4">
-                    <CheckCircle size={14} /> Result: A 24/7 digital salesperson.
-                  </div>
-                </div>
-              }
-            />
-          </Reveal>
-          <Reveal delay={0.3}>
-            <FlipCard
               icon={Zap}
               title="B2B Intelligence & Sales Engineering"
               details={
@@ -95,7 +65,22 @@ const Services = () => {
               }
             />
           </Reveal>
-          <Reveal delay={0.4}>
+          <Reveal delay={0.2}>
+            <FlipCard
+              icon={Target}
+              title="Tactical Copywriting & OBP Reconstruction"
+              details={
+                <div className="card-details-content">
+                  <p><strong>The Problem:</strong> Most copy tries too hard to be "clever," creating a trust barrier.</p>
+                  <p className="mt-4"><strong>The Almeco Fix:</strong> We deploy the 'Lo-Fi Trust Bypass'—social engineering that strikes deep pain points.</p>
+                  <div className="result-pill mt-4">
+                    <CheckCircle size={14} /> Result: Proposals that get opened and read.
+                  </div>
+                </div>
+              }
+            />
+          </Reveal>
+          <Reveal delay={0.3}>
             <FlipCard
               icon={TrendingUp}
               title="Inorganic Growth & Attention Arbitrage"
@@ -110,6 +95,21 @@ const Services = () => {
               }
             />
           </Reveal>
+          <Reveal delay={0.4}>
+            <FlipCard
+              icon={Code}
+              title="Full-Stack Growth Dev (CodexSouls Synergy)"
+              details={
+                <div className="card-details-content">
+                  <p><strong>The Problem:</strong> Your website is likely a "leaking bucket" of technical debt.</p>
+                  <p className="mt-4"><strong>The Almeco Fix:</strong> Engineering conversion environments using React.js & Supabase for frictionless journeys.</p>
+                  <div className="result-pill mt-4">
+                    <CheckCircle size={14} /> Result: A 24/7 digital salesperson.
+                  </div>
+                </div>
+              }
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -118,13 +118,13 @@ const Services = () => {
         <div className="container">
           <Reveal>
             <h2 className="section-title text-center">The "Fascinations"</h2>
-            <p className="section-subtitle text-center">Specific Action Tactics from the Master 9 playbook.</p>
+            <p className="section-subtitle text-center">Specific Action Tactics from the almeco playbook.</p>
           </Reveal>
           <div className="tactics-grid">
             {[
-              { title: 'Leveraging "Schwa"', text: 'How to use subtle downbeats in your communication to command a room\'s rhythm.' },
-              { title: 'Bio Trust Killers', text: 'What NEVER to include in your LinkedIn bio if you want to avoid being labeled as a "freelancer."' },
-              { title: 'Just-in-Time Knowledge', text: 'How we adapt strategy in real-time to match 2026\'s shifting attention patterns.' },
+              { title: "Card 01: The 'Lo-Fi' Trust Bypass", text: "How to intentionally use lowercase letters, short punchy sentences, and raw, unedited mobile screenshots to completely bypass your market's natural sales radar and eliminate friction." },
+              { title: "Card 02: Negative Pattern Interrupts", text: "The precise Chris Voss-style negotiation hooks (like checking in via a bleeding-neck question) that physically force a ghosted prospect to stop scrolling and reply to you instantly." },
+              { title: "Card 03: Strategic Misuse Engine", text: "A calculated execution tactic where you show your product or framework being used completely wrong, intentionally triggering the algorithm as users rush to correct you in the comments." },
             ].map((t, i) => (
               <Reveal key={i} direction="scale" delay={i * 0.15}>
                 <FlipCard 
@@ -163,7 +163,7 @@ const Services = () => {
                 <span className="path-number">03</span>
                 <div>
                   <h4>Pressure-Test</h4>
-                  <p className="text-secondary">Let's pressure-test your current strategy in a 15-minute Almeco Master 9 Audit.</p>
+                  <p className="text-secondary">Let's pressure-test your current strategy in a 15-minute Almeco Almecho Audit.</p>
                 </div>
               </div>
             </div>

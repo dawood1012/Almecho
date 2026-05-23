@@ -79,7 +79,7 @@ const Blog = () => {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="section-subtitle" style={{ maxWidth: '700px' }}>
-              Direct from the frontlines of the US/EU markets. No theory—just documented wins, decoded failures, and the math behind the Master 9 Protocol.
+              Direct from the frontlines of the US/EU markets. No theory—just documented wins, decoded failures, and the math behind the Almecho Protocol.
             </p>
           </Reveal>
         </div>
@@ -148,7 +148,7 @@ const Blog = () => {
               <div className="offer-icon-float">
                 <Download size={28} />
               </div>
-              <h3>The Almeco Master 9 Cheat Sheet</h3>
+              <h3>The Almeco Almecho Cheat Sheet</h3>
               <p className="text-secondary mb-4">
                 "Don't have time to read 50 articles?" Get the condensed version of every strategy in this vault.
               </p>

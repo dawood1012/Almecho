@@ -1,10 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BarChart3, Target, ShieldAlert, Cpu, Zap, TrendingUp, ChevronDown } from 'lucide-react';
-import { useScrollReveal, useCountUp, useMagneticButton, useParallax, useTextReveal, useTextScramble, useTilt } from '../hooks/useAnimations';
+import { useScrollReveal, useCountUp, useMagneticButton, useParallax, useTextReveal, useTilt } from '../hooks/useAnimations';
 import FlipCard from '../components/FlipCard';
 import ScrambleText from '../components/ScrambleText';
 import './Home.css';
+
+const scrollToElement = (ref) => {
+  if (ref.current) {
+    ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
 
 /* Reusable scroll-reveal wrapper */
 const Reveal = ({ children, className = '', direction = 'up', delay = 0 }) => {
@@ -45,6 +51,7 @@ const Home = () => {
   const parallaxRef = useParallax(0.4);
   const tiltRef1 = useTilt({ max: 20, perspective: 1000 });
   const tiltRef2 = useTilt({ max: 15, perspective: 1000 });
+  const offersRef = useRef(null);
 
   return (
     <div className="home-page">
@@ -59,27 +66,33 @@ const Home = () => {
         <div className="container hero-inner text-center">
           <Reveal>
             <span className="pre-headline hero-preheadline">
-              <ScrambleText text="WARNING: If you are looking for an overnight 'magic pill' or Feel-Good Metrics, close this page." />
+              <ScrambleText text="BRUTAL HONESTY: MORE TRAFFIC IS NOT GOING TO FIX YOUR SALES PROBLEM." />
             </span>
           </Reveal>
           <AnimatedHeadline className="hero-title">
-            Why Your Competitors Are Stealing Your Market Share
+            Why "Perfect" Marketing Is Killing Your Growth
           </AnimatedHeadline>
           <Reveal delay={0.5}>
             <h1 className="hero-title-sub mt-2">
-              <span className="title-accent">(And The 'Trust Bypass' System That Reclaims It).</span>
+              <span className="title-accent">(And The 'Trust Bypass' Protocol That Replaces It).
+.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="hero-subtitle">
-              Every day you tolerate your agency's bloated retainers and theory, your competitors steal your buyers. Stop the bleeding. By deploying a hybrid growth architecture, your brand can harness raw, lo-fi attention to dominate US and EU markets.
+              Look, the market is deafening right now. Doing what everyone else does is basically a guaranteed way to stay completely invisible. Honestly? You don't need to burn cash on another generic ad campaign. You need to wire up a Growth Architecture. You need to deploy the exact system that grabs human attention, holds it hostage (in a good way), and systematically turns it into an unfair market advantage.
+
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div className="hero-actions">
-              <Link to="/contact" className="btn-primary" ref={magneticRef}>
-                Audit My Growth System <ArrowRight size={20} />
-              </Link>
+              <button 
+                onClick={() => scrollToElement(offersRef)}
+                className="btn-primary" 
+                ref={magneticRef}
+              >
+                Audit My Growth Architecture <ArrowRight size={20} />
+              </button>
             </div>
           </Reveal>
           <div className="scroll-indicator">
@@ -91,8 +104,8 @@ const Home = () => {
       {/* Scrolling Marquee */}
       <div className="marquee-strip">
         <div className="marquee-track">
-          <span>GROWTH ARCHITECTURE&nbsp;•&nbsp;TRUST BYPASS&nbsp;•&nbsp;PAIN MINING&nbsp;•&nbsp;ATTENTION ARBITRAGE&nbsp;•&nbsp;LO-FI CREATIVE&nbsp;•&nbsp;MASTER 9&nbsp;•&nbsp;</span>
-          <span>GROWTH ARCHITECTURE&nbsp;•&nbsp;TRUST BYPASS&nbsp;•&nbsp;PAIN MINING&nbsp;•&nbsp;ATTENTION ARBITRAGE&nbsp;•&nbsp;LO-FI CREATIVE&nbsp;•&nbsp;MASTER 9&nbsp;•&nbsp;</span>
+          <span>LO-FI TRUST BYPASS&nbsp;•&nbsp;PAIN MINING&nbsp;•&nbsp;SIGNAL HARVESTING&nbsp;•&nbsp;SYSTEMIC ARCHITECTURE&nbsp;•&nbsp;IDENTITY FRAMING&nbsp;•&nbsp;ATTENTION TRADING&nbsp;•&nbsp;FRICTION REMOVAL&nbsp;•&nbsp;NEURO-COPYWRITING&nbsp;•&nbsp;</span>
+          <span>LO-FI TRUST BYPASS&nbsp;•&nbsp;PAIN MINING&nbsp;•&nbsp;SIGNAL HARVESTING&nbsp;•&nbsp;SYSTEMIC ARCHITECTURE&nbsp;•&nbsp;IDENTITY FRAMING&nbsp;•&nbsp;ATTENTION TRADING&nbsp;•&nbsp;FRICTION REMOVAL&nbsp;•&nbsp;NEURO-COPYWRITING&nbsp;•&nbsp;</span>
         </div>
       </div>
 
@@ -109,11 +122,11 @@ const Home = () => {
       </section>
 
       {/* Offers */}
-      <section className="section bg-secondary-section">
+      <section className="section bg-secondary-section" ref={offersRef}>
         <div className="container">
           <SectionTitle className="text-center">Two Ways to Start</SectionTitle>
           <Reveal delay={0.2}>
-            <p className="section-subtitle text-center">Choose your entry point into the Master 9 Protocol.</p>
+            <p className="section-subtitle text-center">Choose your entry point into the Almecho Protocol.</p>
           </Reveal>
           <div className="offers-grid">
             <Reveal delay={0.1}>
@@ -131,7 +144,7 @@ const Home = () => {
             <Reveal delay={0.25}>
               <FlipCard
                 icon={ShieldAlert}
-                title="The 'Master 9' Blueprint"
+                title="The 'Almecho' Blueprint"
                 details={
                   <div className="card-details-content">
                     <p>"The internal protocol we use to scale brands in the US/EU markets. Available for early access."</p>
@@ -153,10 +166,10 @@ const Home = () => {
           </Reveal>
           <div className="services-grid-home">
             {[
-              { icon: Cpu, title: '1. Growth Architecture', details: 'High-performance APP/CRO engines that turn scroll-depth into business assets. We fix the bloated tech murdering your conversion.' },
+              { icon: TrendingUp, title: '1. Market Intelligence', details: 'Social engineering and roadmap alignment that removes the guesswork before a single dollar is spent on ads.' },
               { icon: Target, title: '2. Direct-Response Copywriting', details: "The 'Lo-Fi Trust Bypass'—copy that speaks the platform's native tongue to crush sales resistance instantly." },
               { icon: Zap, title: '3. Social Media & Performance Ads', details: 'Strategic volume and "Pain-Mining" content that trades attention where it\'s cheapest and converts where it\'s hardest.' },
-              { icon: TrendingUp, title: '4. Market Intelligence', details: 'Social engineering and roadmap alignment that removes the guesswork before a single dollar is spent on ads.' },
+              { icon: Cpu, title: '4. Growth Architecture', details: 'High-performance APP/CRO engines that turn scroll-depth into business assets. We fix the bloated tech murdering your conversion.' },
             ].map((s, i) => (
               <Reveal key={i} delay={i * 0.12}>
                 <FlipCard

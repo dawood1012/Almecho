@@ -87,7 +87,7 @@ const Contact = () => {
                 <div className="email-body">
                   <p>{formData.name ? formData.name.split(' ')[0] : 'Hey'},</p>
                   <p>Received your note about the bottleneck.</p>
-                  <p>I'm running this through the Master 9 Protocol with the team (Abbas and Dawood) this afternoon. We're looking for the "Lo-Fi Trust Bypass" opportunities you might be missing.</p>
+                  <p>I'm running this through the Almecho Protocol with the team (Abbas and Dawood) this afternoon. We're looking for the "Lo-Fi Trust Bypass" opportunities you might be missing.</p>
                   <p>Are you free for a quick 15-minute alignment sync on Thursday or Friday? I want to pressure-test a few ideas I have for your bottleneck.</p>
                   <p>thoughts?</p>
                   <p className="email-sig">— Boss (Abdul Ghani)<br />Founder, Almeco</p>
@@ -116,7 +116,7 @@ const Contact = () => {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="section-subtitle" style={{ maxWidth: '650px' }}>
-              If you've read this far, you know your current system is broken. This is the bridge to the Desired State. Let's install the Almeco Master 9 Protocol into your business.
+              If you've read this far, you know your current system is broken. This is the bridge to the Desired State. Let's install the Almeco Almecho Protocol into your business.
             </p>
           </Reveal>
         </div>

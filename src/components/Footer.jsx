@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
             <div className="footer-col">
               <h4>Protocol</h4>
-              <a href="#">Master 9 Audit</a>
+              <a href="#">Almecho Audit</a>
               <a href="#">Growth Blueprint</a>
               <a href="#">Cheat Sheet</a>
             </div>
@@ -37,8 +37,8 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="footer-marquee-container">
             <div className="footer-marquee">
-              <span>GROWTH ARCHITECTURE • TRUST BYPASS • PAIN MINING • ATTENTION ARBITRAGE • LO-FI CREATIVE • MASTER 9 PROTOCOL •&nbsp;</span>
-              <span>GROWTH ARCHITECTURE • TRUST BYPASS • PAIN MINING • ATTENTION ARBITRAGE • LO-FI CREATIVE • MASTER 9 PROTOCOL •&nbsp;</span>
+              <span>GROWTH ARCHITECTURE • TRUST BYPASS • PAIN MINING • ATTENTION ARBITRAGE • LO-FI CREATIVE • ALMECHO PROTOCOL •&nbsp;</span>
+              <span>GROWTH ARCHITECTURE • TRUST BYPASS • PAIN MINING • ATTENTION ARBITRAGE • LO-FI CREATIVE • ALMECHO PROTOCOL •&nbsp;</span>
             </div>
           </div>
           <p className="copyright">&copy; {new Date().getFullYear()} Almecho. All rights reserved.</p>
