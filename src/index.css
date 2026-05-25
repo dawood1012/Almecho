@@ -379,3 +379,29 @@ h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
   background-color: var(--accent-red);
   color: white;
 }
+
+/* Disabled Links and Buttons */
+.disabled-link,
+.btn-mini.disabled,
+.menu-link.disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+  pointer-events: auto !important; /* ensure cursor: not-allowed works */
+}
+
+.disabled-link:hover,
+.btn-mini.disabled:hover,
+.menu-link.disabled:hover {
+  color: inherit !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.menu-link.disabled:hover {
+  color: var(--text-muted) !important;
+}
+
+.menu-link.disabled .menu-link-line {
+  display: none !important;
+}
+

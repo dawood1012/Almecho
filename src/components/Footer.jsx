@@ -22,7 +22,7 @@ const Footer = () => {
               <h4>Navigate</h4>
               <Link to="/">Home</Link>
               <Link to="/services">Services</Link>
-              <Link to="/blog">Blog</Link>
+              <Link to="#" className="disabled-link" onClick={(e) => e.preventDefault()}>Blog</Link>
               <Link to="/contact">Contact</Link>
             </div>
             <div className="footer-col">

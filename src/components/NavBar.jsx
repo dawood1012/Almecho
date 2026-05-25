@@ -56,14 +56,19 @@ const NavBar = () => {
             {[
               { path: '/', label: 'Home', num: '01' },
               { path: '/services', label: 'Services', num: '02' },
-              { path: '/blog', label: 'Blog', num: '03' },
+              { path: '/blog', label: 'Blog', num: '03', disabled: true },
               { path: '/contact', label: 'Contact', num: '04' }
             ].map((link, i) => (
               <Link 
                 key={link.path}
-                to={link.path} 
-                className={`menu-link ${location.pathname === link.path ? 'active' : ''}`} 
+                to={link.disabled ? '#' : link.path} 
+                className={`menu-link ${location.pathname === link.path ? 'active' : ''} ${link.disabled ? 'disabled' : ''}`} 
                 style={{ transitionDelay: `${0.2 + i * 0.1}s` }}
+                onClick={(e) => {
+                  if (link.disabled) {
+                    e.preventDefault();
+                  }
+                }}
               >
                 <span className="menu-link-number">{link.num}</span>
                 <span className="menu-link-text">{link.label}</span>

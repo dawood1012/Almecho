@@ -113,11 +113,13 @@ const Home = () => {
       <section className="section stats-section">
         <div className="container">
           <div className="stats-grid">
-            <StatCounter target={30} suffix="%" label="Revenue Bottleneck Found" />
-            <StatCounter target={15} suffix="min" label="Diagnostic Call" />
-            <StatCounter target={400} suffix="%" label="Average Demo Lift" />
-            <StatCounter target={0} suffix=" BS" label="Zero Fluff Guaranteed" />
+            <StatCounter target={100} suffix="%" label="BRUTALLY HONEST" />
+            <StatCounter target={15} suffix="min" label="TO FIND THE BOTTLENECK" />
+            <StatCounter target={0} suffix="%" label="GENERIC RETAINERS
+" />
+            <StatCounter target={0} label="KIDNEYS REQUIRED" />
           </div>
+
         </div>
       </section>
 
@@ -148,7 +150,7 @@ const Home = () => {
                 details={
                   <div className="card-details-content">
                     <p>"The internal protocol we use to scale brands in the US/EU markets. Available for early access."</p>
-                    <Link to="/blog" className="btn-mini mt-6">Download Blueprint <ArrowRight size={14} /></Link>
+                    <Link to="#" className="btn-mini mt-6 disabled" onClick={(e) => e.preventDefault()}>Download Blueprint <ArrowRight size={14} /></Link>
                   </div>
                 }
               />
@@ -216,15 +218,17 @@ const Home = () => {
         <div className="container text-center">
           <Reveal>
             <p className="judo-statement">
-              Look, we aren't for everyone. If you want a 50-page PDF report that says nothing, call a "Big 4" firm. But if you want a lean, high-velocity growth engine that bypasses the noise—<strong>we should talk.</strong>
+              Look, we aren't for everyone. If you want a 50-page PDF report full of vanity metrics and buzzwords, go hire a traditional agency. But if you are tired of burning cash and want a systemic architecture that actually forces revenue—it's time to fix the leak.
             </p>
           </Reveal>
 
           <Reveal direction="scale" delay={0.2}>
             <div className="cta-container">
-              <h3>Schedule an Alignment Call.</h3>
+              <h3>Let's Find The Leak In Your System.</h3>
               <p className="kidney-joke">
-                (It's a 15-minute diagnostic. No high-pressure sales scripts, no kidneys required, and we won't spam your inbox until the end of time. We're too busy scaling brands for that.)
+                (It’s a 15-minute diagnostic. No high-pressure sales scripts, no kidneys required, and we won't spam your inbox until the end of time. We're too busy building assets for that.)
+
+
               </p>
               <Link to="/contact" className="btn-primary mt-6">
                 Audit My Growth System <ArrowRight size={20} />
